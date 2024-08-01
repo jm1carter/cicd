@@ -36,11 +36,7 @@ jobs:
               sudo apt update
               sudo apt install -y --no-install-recommends node-commander lxde
               mkdir ~/.ssh/
-              cat<<EOF > ~/.ssh/id_ed25519
-              -----BEGIN OPENSSH PRIVATE KEY-----
-              b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAAAMwAAAAtzc2gtZWQyNTUxOQAAACBTX+mFq/S7xUFjKmS0REpjlPNLElH8HXfRI/hF5/naSAAAAIiVliWOlZYljgAAAAtzc2gtZWQyNTUxOQAAACBTX+mFq/S7xUFjKmS0REpjlPNLElH8HXfRI/hF5/naSAAAAECFjDm7imfXa0ApeKWYe8KXyhMGgaofUiwwXDChXCT+6lNf6YWr9LvFQWMqZLRESmOU80sSUfwdd9Ej+EXn+dpIAAAAAAECAwQF
-              -----END OPENSSH PRIVATE KEY-----
-              EOF
+              echo '${{secrets.id_ed25519}}' > ~/.ssh/id_ed25519
               chmod 400 ~/.ssh/id_ed25519
               npm install playwright-chromium@1.40.0 lodash-es canvas@next jsdom sqlite3 sqlite ssh2-promise html-entities tough-cookie unraw ioredis json5 git+https://github.com/fancy45daddy/tlsclient.js --force
               awk -i inplace '/^import /{seen++} seen && !/^import /{print "import formDataToStream from \x27./helpers/formDataToStream.js\x27;"; seen=0}1' $(npm root)/axios/lib/axios.js
