@@ -24,7 +24,8 @@ jobs:
               for i in timebuckwall timewall alexamaster
               do
                   curl -o $i.mjs https://dev.azure.com/chaowenguo/ci/_apis/git/repositories/ci/items?path=/$i.mjs                
-              done    
+              done 
+              ls -al
               if [ ${{matrix.ip}} == 13.89.100.0 ]
               then
                   git add timebuckwall.mjs timewall.mjs alexamaster.mjs
