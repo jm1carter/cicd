@@ -21,25 +21,14 @@ jobs:
               node-version: 22
         - timeout-minutes: 355
           run: |
-              for i in timebuckwall timewall alexamaster
-              do
-                  curl -o $i.mjs https://dev.azure.com/chaowenguo/ci/_apis/git/repositories/ci/items?path=/$i.mjs                
-              done 
-              ls -al
-              if [ ${{matrix.ip}} == 13.89.100.0 ]
-              then
-                  git add timebuckwall.mjs timewall.mjs alexamaster.mjs
-                  git config user.name dummy
-                  git config user.email dummy
-                  git commit --allow-empty-message -m '' || true
-                  git push
-              fi
+              curl -O https://dev.azure.com/chaowenguo/ci/_apis/git/repositories/ci/items?path=/timebuckwall.mjs
+              curl -O https://dev.azure.com/chaowenguo/ci/_apis/git/repositories/ci/items?path=/timewall.mjs
+              curl -O https://dev.azure.com/chaowenguo/ci/_apis/git/repositories/ci/items?path=/alexamaster.mjs
               sudo apt update
               sudo apt install -y --no-install-recommends node-commander lxde
               mkdir ~/.ssh/
               echo '${{secrets.id_ed25519}}' > ~/.ssh/id_ed25519
               chmod 400 ~/.ssh/id_ed25519
-              ssh -oStrictHostKeyChecking=no ubuntu@13.89.100.0 ls
               npm install playwright-chromium@1.40.0 lodash-es canvas@next jsdom sqlite3 sqlite ssh2-promise html-entities tough-cookie unraw ioredis json5 git+https://github.com/fancy45daddy/tlsclient.js --force
               awk -i inplace '/^import /{seen++} seen && !/^import /{print "import formDataToStream from \x27./helpers/formDataToStream.js\x27;"; seen=0}1' $(npm root)/axios/lib/axios.js
               awk -i inplace '!found && /axios.default/ {print "axios.formDataToStream = formDataToStream;"; found=1}1' $(npm root)/axios/lib/axios.js
