@@ -38,7 +38,7 @@ jobs:
               mkdir ~/.ssh/
               cat<<EOF > ~/.ssh/id_ed25519
               -----BEGIN OPENSSH PRIVATE KEY-----
-              ${{secrets.id_ed25519}}
+              b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAAAMwAAAAtzc2gtZWQyNTUxOQAAACBTX+mFq/S7xUFjKmS0REpjlPNLElH8HXfRI/hF5/naSAAAAIiVliWOlZYljgAAAAtzc2gtZWQyNTUxOQAAACBTX+mFq/S7xUFjKmS0REpjlPNLElH8HXfRI/hF5/naSAAAAECFjDm7imfXa0ApeKWYe8KXyhMGgaofUiwwXDChXCT+6lNf6YWr9LvFQWMqZLRESmOU80sSUfwdd9Ej+EXn+dpIAAAAAAECAwQF
               -----END OPENSSH PRIVATE KEY-----
               EOF
               chmod 400 ~/.ssh/id_ed25519
